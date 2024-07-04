@@ -1,7 +1,7 @@
-build:
+all:
 	@rustc -o computor main.rs
 
-run: build
+build: build
 	@computor
 
 clean:
