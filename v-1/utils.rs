@@ -9,8 +9,12 @@ pub fn reduced_format(eq: &HashMap<i32, f64>) -> String {
         if power == 0 {
             format!("{} * X^{}", coeff, power) 
         }
+        else if coeff >= 0.0 {
+
+            format!("{} * X^{}", coeff, power)
+        }
         else {
-            format!("{:+} * X^{}", coeff, power) 
+            format!("- {} * X^{}", -coeff, power) 
         }
     })
     .collect();
@@ -24,11 +28,13 @@ pub fn reduced_format(eq: &HashMap<i32, f64>) -> String {
 
     if terms.is_empty() {
     
-        "0".to_string()
+        "0 = 0".to_string()
     }
     else {
 
-        terms.join(" ")+" = 0"
+        let first_term = terms.remove(0);
+        let rest = terms.join(" ");
+        format!("{} {} = 0", first_term, rest)
     }
 }
 
