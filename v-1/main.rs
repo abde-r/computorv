@@ -1,55 +1,49 @@
 use std::env;
+use std::io::{self, Write};
 mod utils;
 mod parse;
+mod parser2;
 
 
 fn main() {
 
     let args: Vec<String> = env::args().collect();
-    if args.len() == 2 {
-
-        match parse::_parser(&args[1]) {
-
-            Ok(reduced_form) => {
-
-
-                if reduced_form.values().all(|&coeff| coeff == 0.0) {
-                    println!("Reduced form: 0 = 0");
-                    println!("Polynomial degree: 0");
-                    println!("Any number is a solution.");
-                }
-                else {
-
-
-                    //let reduced_form = parse::_parser(&args[1]);
-                    let degree = *reduced_form.keys().max().unwrap_or(&0);
-                    let solutions = utils::solve_equation(&reduced_form, degree);
-        
-                    println!("Reduced form: {}", utils::reduced_format(&reduced_form));
-                    println!("Polynomial degree: {}", degree);
-                    println!("{}", solutions);
-                   // if let Some(d) = discr {
-
-                     //   println!("Discr: {:.6}", d);
-                    //}
-                }
-            }
-                Err(e) => {
-
-                    println!("Error: {}", e);
-                }
-            
-        }
-        //let reduced_form = parse::_parser(&args[1]);
-        //let degree = *reduced_form.keys().max().unwrap_or(&0);
-
-        //let solutions = utils::solve_equation(&reduced_form, degree);
-        
-        //println!("Reduced form: {}", utils::reduced_format(&reduced_form));
-        //println!("Polynomial degree: {}", degree);
-        //println!("{}", solutions);
+    let equation = if args.len() == 2 {
+        args[1].clone()
     }
     else {
-        println!("invalid format");
+        print!("Enter the equation: ");
+        io::stdout().flush().unwrap();
+        let mut input = String::new();
+        io::stdin().read_line(&mut input).expect("Failed to read line");
+        input.trim().to_string()
+    };
+
+    if utils::syntax_checker(&equation) {
+        match parse::_parser(&equation) {
+            Ok(reduced_form) => {
+            
+                // println!("gege {:?}", reduced_form);
+                // let reduced_form = parse::_parser(&args[1]);
+                
+                // println!("vv: {:?}", reduced_form);
+                let reduced_form_str = utils::reduced_format(&reduced_form);
+                
+                println!("Reduced form: {}", reduced_form_str);
+                let reduced_form2 = parser2::_parser2(&reduced_form_str.to_string());
+                // println!("reduced_form2: {:?}", reduced_form2);
+                let degree = *reduced_form2.keys().max().unwrap_or(&0);
+                let solutions = utils::solve_equation(&reduced_form2, degree);
+                println!("Polynomial degree: {}", degree);
+                println!("{}", solutions);
+            }
+            Err(e) => {
+                println!("Error: {}", e);
+            }
+        }
     }
+    else {
+        println!("Syntax Error! invalid characters");
+    }
+
 }

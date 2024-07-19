@@ -4,5 +4,8 @@ all:
 build: build
 	@computor
 
+test: all
+	@rustc -o tester tester.rs
+
 clean:
-	@rm computor
+	@rm computor tester
