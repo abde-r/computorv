@@ -99,6 +99,7 @@ fn to_left(eq: &HashMap<i32, f64>) -> String {
                 else {
                     result.push_str(&format!("{}{} * X^{}", sign, coeff.abs(), power));
                 }
+                
                 // let abs_coeff = coeff.abs();
     
                 // if power == &0 {
