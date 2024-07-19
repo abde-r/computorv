@@ -32,7 +32,6 @@ function. The program will have to display its solution(s).</h5>
 
 <h5>◦ Finally, start solving equations such as: <code>./computorv "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0"</code>.</h5>
 
-<h4>◦ Have fun! ✨</h4>
 <br />
 <h3>Used Technologies</h3>
 
