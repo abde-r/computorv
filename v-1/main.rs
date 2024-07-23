@@ -22,18 +22,14 @@ fn main() {
     if utils::syntax_checker(&equation) {
         match parse::_parser(&equation) {
             Ok(reduced_form) => {
-            
-                // println!("gege {:?}", reduced_form);
-                // let reduced_form = parse::_parser(&args[1]);
-                
-                // println!("vv: {:?}", reduced_form);
                 let reduced_form_str = utils::reduced_format(&reduced_form);
                 
                 println!("Reduced form: {}", reduced_form_str);
+                
                 let reduced_form2 = parser2::_parser2(&reduced_form_str.to_string());
-                // println!("reduced_form2: {:?}", reduced_form2);
                 let degree = *reduced_form2.keys().max().unwrap_or(&0);
                 let solutions = utils::solve_equation(&reduced_form2, degree);
+                
                 println!("Polynomial degree: {}", degree);
                 println!("{}", solutions);
             }
