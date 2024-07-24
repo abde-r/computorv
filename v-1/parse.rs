@@ -10,9 +10,9 @@ fn parse_term(term: &str) -> Result<(f64, i32), String> {
     } else if term.contains("X") {
         let v: Vec<&str> = term.split("X").collect();
         let coeff = if v[0].trim().is_empty() || v[0].trim() == "+" { 1.0 } else if v[0].trim() == "-" { -1.0 } else { v[0].replace("*", "").trim().parse::<f64>().unwrap() };
-        Ok((coeff, -88))
+        Ok((coeff, __DELIM__))
     } else {
-        Ok((term.trim().parse::<f64>().unwrap(), -99))
+        Ok((term.trim().parse::<f64>().map_err(|_| "Syntax Error!")?, __DELIM_))
     }
 }
 

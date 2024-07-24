@@ -15,11 +15,11 @@ fn main() {
     let tests = vec![
         TestCase {
             input: "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0".to_string(),
-            expected_output: "Reduced form: - 9.3 * X^2 + 4 * X^1 + 4 * X^0 = 0\nPolynomial degree: 2\nDiscriminant is strictly positive, the two solutions are:\nx1 = (-1*4 - √164.8) / (2*-9.3)\n   = 0.905239\nx2 = (-1*4 + √164.8) / (2*-9.3)\n   = -0.475131".to_string(),
+            expected_output: "Reduced form: - 9.3 * X^2 + 4 * X^1 + 4 * X^0 = 0\nPolynomial degree: 2\nDiscriminant is strictly positive, the two solutions are:\nx1 = (-1*4 - √164.8) / (2*-9.3)\n   = -16.837445228704972 / -18.6\n   = 0.905239\nx2 = (-1*4 + √164.8) / (2*-9.3)\n   = 8.83744522870497 / -18.6\n   = -0.475131".to_string(),
         },
         TestCase {
             input: "5 * X^0 + 4 * X^1 = 4 * X^0".to_string(),
-            expected_output: "Reduced form: 4 * X^1 + 1 * X^0 = 0\nPolynomial degree: 1\nThe solution is:\nx = -1*1 / 4\n  = -0.250000".to_string(),
+            expected_output: "Reduced form: 4 * X^1 + 1 * X^0 = 0\nPolynomial degree: 1\nThe solution is:\nx = -1*1 / 4\n  = -1 / 4\n  = -0.250000".to_string(),
         },
         TestCase {
             input: "8 * X^0 - 6 * X^1 + 0 * X^2 - 5.6 * X^3 = 3 * X^0".to_string(),
@@ -39,15 +39,15 @@ fn main() {
         },
         TestCase {
             input: "5 * X^0 = 4 * X^0 +7 * X^1".to_string(),
-            expected_output: "Reduced form: - 7 * X^1 + 1 * X^0 = 0\nPolynomial degree: 1\nThe solution is:\nx = -1*1 / -7\n  = 0.142857".to_string(),
+            expected_output: "Reduced form: - 7 * X^1 + 1 * X^0 = 0\nPolynomial degree: 1\nThe solution is:\nx = -1*1 / -7\n  = -1 / -7\n  = 0.142857".to_string(),
         },
         TestCase {
             input: "5 * X^0 + 13 * X^1 + 3 * X^2 = 1 * X^0+ 1 * X^1".to_string(),
-            expected_output: "Reduced form: 3 * X^2 + 12 * X^1 + 4 * X^0 = 0\nPolynomial degree: 2\nDiscriminant is strictly positive, the two solutions are:\nx1 = (-1*12 - √96) / (2*3)\n   = -3.632993\nx2 = (-1*12 + √96) / (2*3)\n   = -0.367007".to_string(),
+            expected_output: "Reduced form: 3 * X^2 + 12 * X^1 + 4 * X^0 = 0\nPolynomial degree: 2\nDiscriminant is strictly positive, the two solutions are:\nx1 = (-1*12 - √96) / (2*3)\n   = -21.79795897113271 / 6\n   = -3.632993\nx2 = (-1*12 + √96) / (2*3)\n   = -2.2020410288672885 / 6\n   = -0.367007".to_string(),
         },
         TestCase {
             input: "6 * X^0 + 11 * X^1 + 5 * X^2 = 1 * X^0+ 1 * X^1".to_string(),
-            expected_output: "Reduced form: 5 * X^2 + 10 * X^1 + 5 * X^0 = 0\nPolynomial degree: 2\nDiscriminant is 0, the solution is:\nx = -1*10 / (2*5)\n  = -1.000000".to_string(),
+            expected_output: "Reduced form: 5 * X^2 + 10 * X^1 + 5 * X^0 = 0\nPolynomial degree: 2\nDiscriminant is 0, the solution is:\nx = -1*10 / (2*5)\n  = -10 / 10\n  = -1.000000".to_string(),
         },
         TestCase {
             input: "5 * X^0 + 3 * X^1 + 3 * X^2 = 1 * X^0+ 0 * X^1".to_string(),
@@ -56,11 +56,11 @@ fn main() {
 
         TestCase { // Basic Quadratic Equation
             input: "2 * X^2 + 3 * X^1 + 1 = 0".to_string(),
-            expected_output: "Reduced form: 2 * X^2 + 3 * X^1 + 1 = 0\nPolynomial degree: 2\nDiscriminant is strictly positive, the two solutions are:\nx1 = (-1*3 - √1) / (2*2)\n   = -1.000000\nx2 = (-1*3 + √1) / (2*2)\n   = -0.500000".to_string(),
+            expected_output: "Reduced form: 2 * X^2 + 3 * X^1 + 1 = 0\nPolynomial degree: 2\nDiscriminant is strictly positive, the two solutions are:\nx1 = (-1*3 - √1) / (2*2)\n   = -4 / 4\n   = -1.000000\nx2 = (-1*3 + √1) / (2*2)\n   = -2 / 4\n   = -0.500000".to_string(),
         },
         TestCase { // Basic Linear Equation
             input: "4 * X + 5 = 0".to_string(),
-            expected_output: "Reduced form: 4 * X + 5 = 0\nPolynomial degree: 1\nThe solution is:\nx = -1*5 / 4\n  = -1.250000".to_string(),
+            expected_output: "Reduced form: 4 * X + 5 = 0\nPolynomial degree: 1\nThe solution is:\nx = -1*5 / 4\n  = -5 / 4\n  = -1.250000".to_string(),
         },
         TestCase { // Constant Equation
             input: "5 = 5".to_string(),
@@ -68,7 +68,7 @@ fn main() {
         },
         TestCase { // Zero Coefficients
             input: "0 * X^2 + 3 * X^1 + 4 = 0".to_string(),
-            expected_output: "Reduced form: 0 * X^2 + 3 * X^1 + 4 = 0\nPolynomial degree: 1\nThe solution is:\nx = -1*4 / 3\n  = -1.333333".to_string(),
+            expected_output: "Reduced form: 0 * X^2 + 3 * X^1 + 4 = 0\nPolynomial degree: 1\nThe solution is:\nx = -1*4 / 3\n  = -4 / 3\n  = -1.333333".to_string(),
         },
         TestCase { // Equal Terms on Both Sides
             input: "3 * X^2 + 2 * X^1 + 1 = 3 * X^2 + 2 * X^1 + 1".to_string(),
@@ -92,17 +92,17 @@ fn main() {
         },
         TestCase { // Floating Point Coefficients
             input: "0.5 * X^2 + 1.5 * X^1 + 0.75 = 0".to_string(),
-            expected_output: "Reduced form: 0.5 * X^2 + 1.5 * X^1 + 0.75 = 0\nPolynomial degree: 2\nDiscriminant is strictly positive, the two solutions are:\nx1 = (-1*1.5 - √0.75) / (2*0.5)\n   = -2.366025\nx2 = (-1*1.5 + √0.75) / (2*0.5)\n   = -0.633975".to_string(),
+            expected_output: "Reduced form: 0.5 * X^2 + 1.5 * X^1 + 0.75 = 0\nPolynomial degree: 2\nDiscriminant is strictly positive, the two solutions are:\nx1 = (-1*1.5 - √0.75) / (2*0.5)\n   = -2.3660254037844384 / 1\n   = -2.366025\nx2 = (-1*1.5 + √0.75) / (2*0.5)\n   = -0.6339745962155614 / 1\n   = -0.633975".to_string(),
         },
         
         // BONUS
         TestCase {
             input: "5 + 4 * X + 1 * X^2= 1 * X^2".to_string(),
-            expected_output: "Reduced form: 4 * X + 5 = 0\nPolynomial degree: 1\nThe solution is:\nx = -1*5 / 4\n  = -1.250000".to_string(),
+            expected_output: "Reduced form: 4 * X + 5 = 0\nPolynomial degree: 1\nThe solution is:\nx = -1*5 / 4\n  = -5 / 4\n  = -1.250000".to_string(),
         },
         TestCase {
             input: "5 + X + 1 * X = 3 * X".to_string(),
-            expected_output: "Reduced form: - 1 * X + 5 = 0\nPolynomial degree: 1\nThe solution is:\nx = -1*5 / -1\n  = 5.000000".to_string(),
+            expected_output: "Reduced form: - 1 * X + 5 = 0\nPolynomial degree: 1\nThe solution is:\nx = -1*5 / -1\n  = -5 / -1\n  = 5.000000".to_string(),
         },
     ];
 
